@@ -10,6 +10,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -60,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-import { Link } from 'react-router-dom'
+
 
 const Header = () => {
 

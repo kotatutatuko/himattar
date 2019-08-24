@@ -4,13 +4,13 @@ import PostCard from "./PostCard"
 const PostList = () => {
     const tmpArray = [1, 2, 3];
     return (
-        <React.Fragment>
+        <div>
             {tmpArray.map((value, index) => {
                 return (
                     <PostCard value={value} key={index}/>
                 )
             })}
-        </React.Fragment>
+        </div>
     )
 }
 

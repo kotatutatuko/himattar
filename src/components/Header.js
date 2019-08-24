@@ -10,7 +10,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,7 +64,7 @@ const Header = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="flex">
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" color="inherit" className={classes.title}>
             Himattar

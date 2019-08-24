@@ -1,11 +1,11 @@
 import React from "react";
 
-const Header = () => {
+const PostCard = (props) => {
     return (
         <React.Fragment>
-            Header
+            {props.value}
         </React.Fragment>
     )
 }
 
-export default Header;
+export default PostCard;

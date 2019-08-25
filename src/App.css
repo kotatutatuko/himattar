@@ -1,0 +1,33 @@
+.mainbox {
+  padding-top: 1rem;
+}
+.loginbox,
+.registerbox {
+  text-align: center;
+  padding-bottom: 5rem;
+}
+.loginbox p,
+.registerbox p {
+  font-size: 1.5rem;
+  font: 700;
+}
+.postbox p {
+  margin-left: 5%;
+  margin-right: 30%;
+  font-size: 1.6rem;
+  font: 700;
+}
+body,
+html {
+  margin: 0px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  margin-top: 3rem;
+}

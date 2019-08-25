@@ -2,12 +2,10 @@ import React from "react";
 import PostCard from "./PostCard";
 
 const PostList = () => {
-  const tmpArray = [1, 2, 3];
+  const tmpArray = ["Testuser", "テスト用投稿", "テスト投稿です"];
   return (
     <div>
-      {tmpArray.map((value, index) => {
-        return <PostCard value={value} key={index} />;
-      })}
+      <PostCard value={tmpArray} />
     </div>
   );
 };

@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = () => {
+const Header_beforeLogin = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -72,24 +72,12 @@ const Header = () => {
           <Typography variant="h4" color="inherit" className={classes.title}>
             Himattar
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
-          <Button color="inherit">投稿</Button>
+          <Button color="inherit">ログイン</Button>
+          <Button color="inherit">新規登録</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+export default Header_beforeLogin;

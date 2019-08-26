@@ -68,7 +68,7 @@ const Login = () => {
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="standard-name"
-          label="User Name"
+          label="Email"
           className={classes.textField}
           margin="normal"
         />

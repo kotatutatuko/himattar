@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
+import { inputPassword } from "../actions/register";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -42,13 +43,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Register = () => {
+const Register = ({state, inputEmail, inputPassword, inputUserName, resetInput}) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    amount: "",
     password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false
   });
   const handleClickShowPassword = () => {
@@ -58,9 +56,20 @@ const Register = () => {
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+
+  const handleChangePassword = event => {
+    inputPassword(event.target.value);
+  }
+
+  const handleChangeEmail = event => {
+    inputEmail(event.target.value)
+  }
+
+  const handleChangeUserName = event => {
+    inputUserName(event.target.value)
+  }
+
+  console.log(state)
 
   return (
     <div className="registerbox">
@@ -71,6 +80,8 @@ const Register = () => {
           label="User Name"
           className={classes.textField}
           margin="normal"
+          value={state.inputUserName}
+          onChange={handleChangeUserName}
         />
         <br />
         <TextField
@@ -81,6 +92,8 @@ const Register = () => {
           name="email"
           margin="normal"
           autoComplete="email"
+          value={state.inputEmail}
+          onChange={handleChangeEmail}
         />
         <br />
         <FormControl className={clsx(classes.margin, classes.textField)}>
@@ -88,8 +101,8 @@ const Register = () => {
           <Input
             id="adornment-password"
             type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
+            onChange={handleChangePassword}
+            value={state.inputPassword}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

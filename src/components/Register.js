@@ -46,7 +46,6 @@ const useStyles = makeStyles(theme => ({
 const Register = ({state, history, inputEmail, inputPassword, inputUserName, resetInput}) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    password: "",
     showPassword: false
   });
   const handleClickShowPassword = () => {

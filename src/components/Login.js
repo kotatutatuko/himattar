@@ -13,6 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
+import firebase from "firebase";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -42,13 +43,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = () => {
+const Login = ({ state, history, inputEmail, inputPassword, resetInput }) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
     showPassword: false
   });
   const handleClickShowPassword = () => {
@@ -58,9 +55,27 @@ const Login = () => {
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+
+  const handleChangePassword = event => {
+    inputPassword(event.target.value);
+  }
+
+  const handleChangeEmail = event => {
+    inputEmail(event.target.value)
+  }
+
+  const handleClickLogin = () => {
+    firebase.auth().signInWithEmailAndPassword(state.inputEmail, state.inputPassword).then(() => {
+      history.push("/");
+      resetInput();
+    }).catch(error => {
+      console.log(error.code);
+      console.log(error.message);
+    })
+  }
+
+  console.log(state)
+
 
   return (
     <div className="loginbox">
@@ -69,6 +84,8 @@ const Login = () => {
         <TextField
           id="standard-name"
           label="Email"
+          value={state.inputEmaile}
+          onChange={handleChangeEmail}
           className={classes.textField}
           margin="normal"
         />
@@ -78,8 +95,8 @@ const Login = () => {
           <Input
             id="adornment-password"
             type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
+            value={state.inputPassword}
+            onChange={handleChangePassword}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -94,7 +111,7 @@ const Login = () => {
           />
         </FormControl>
       </form>
-      <Button variant="outlined" color="secondary" className={classes.button}>
+      <Button variant="outlined" color="secondary" className={classes.button} onClick={handleClickLogin}>
         Login
       </Button>
       <br />

@@ -11,7 +11,7 @@ export const inputEmail = input => {
 
 export const inputPassword= input => {
     return {
-        type: actionType.INPUT_PASSWARD_FOR_REGISTER,
+        type: actionType.INPUT_PASSWORD_FOR_REGISTER,
         payload: {
             input
         }

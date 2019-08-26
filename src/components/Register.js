@@ -13,7 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
-import { inputPassword } from "../actions/register";
+import firebase from "../firebase";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Register = ({state, inputEmail, inputPassword, inputUserName, resetInput}) => {
+const Register = ({state, history, inputEmail, inputPassword, inputUserName, resetInput}) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     password: "",
@@ -69,7 +69,15 @@ const Register = ({state, inputEmail, inputPassword, inputUserName, resetInput})
     inputUserName(event.target.value)
   }
 
-  console.log(state)
+  const handleClickRegister = () => {
+    firebase.auth().createUserWithEmailAndPassword(state.inputEmail, state.inputPassword).then(() => {
+      history.push("/");
+      resetInput();
+    }).catch(error => {
+      console.log(error.code);
+      console.log(error.message);
+    })
+  }
 
   return (
     <div className="registerbox">
@@ -117,7 +125,7 @@ const Register = ({state, inputEmail, inputPassword, inputUserName, resetInput})
           />
         </FormControl>
       </form>
-      <Button variant="outlined" color="secondary" className={classes.button}>
+      <Button variant="outlined" color="secondary" className={classes.button} onClick={handleClickRegister}>
         登録
       </Button>
       <br />

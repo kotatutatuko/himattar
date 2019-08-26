@@ -1,11 +1,13 @@
 import Register from "../components/Register";
 import { connect } from "react-redux";
 import { inputEmail, inputPassword, inputUserName, resetInput } from "../actions/register";
+import { withRouter } from "react-router-dom";
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, historyProps) => {
     return {
         state: state.RegisterReducer,
+        history: historyProps.history,
     }
 }
 
@@ -26,4 +28,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))

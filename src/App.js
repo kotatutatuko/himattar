@@ -5,7 +5,7 @@ import HeaderAfterLogin from "./components/HeaderAfterLogin"
 
 import PostList from "./components/PostList";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import Register from "./containers/Register";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
 import Post from "./components/Post";

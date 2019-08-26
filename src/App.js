@@ -1,7 +1,8 @@
 import React from "react";
 
 import HeaderBeforeLogin from "./components/HeaderBeforeLogin";
-import Header from "./components/Header";
+import HeaderAfterLogin from "./components/HeaderAfterLogin"
+
 import PostList from "./components/PostList";
 import Login from "./components/Login";
 import Register from "./components/Register";

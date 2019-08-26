@@ -10,6 +10,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { withRouter } from "react-router"
 import ReturnTiTleAndSearch from "./HeaderCommon";
 import { Link } from "react-router-dom";
 
@@ -65,18 +66,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = () => {
+const HeaderAfterLogin = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <ReturnTiTleAndSearch value={classes} />
-          <Button color="inherit">投稿</Button>
+          <Button color="inherit" onClick={() => { props.history.push("/post") }}>投稿</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+export default withRouter(HeaderAfterLogin);

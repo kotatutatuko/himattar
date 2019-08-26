@@ -15,7 +15,12 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "15%"
   },
   username: {
-    fontSize: "1rem"
+    fontSize: "1rem",
+    font: "500"
+  },
+  date: {
+    marginTop: "0.2rem",
+    fontSize: "0.7rem"
   },
   title: {
     marginTop: "0.5rem",
@@ -32,8 +37,9 @@ const useStyles = makeStyles(theme => ({
 /*
 My assumption...
 first--Username
-second--title
-third--content
+second--date
+third--title
+forth--content
 */
 
 const PostCard = props => {
@@ -44,11 +50,14 @@ const PostCard = props => {
         <Typography variant="p" component="p" className={classes.username}>
           {props.value[0]}
         </Typography>
-        <Typography variant="p" component="h3" className={classes.title}>
+        <Typography variant="p" component="p" className={classes.date}>
           {props.value[1]}
         </Typography>
-        <Typography variant="p" component="p" className={classes.content}>
+        <Typography variant="p" component="h3" className={classes.title}>
           {props.value[2]}
+        </Typography>
+        <Typography variant="p" component="p" className={classes.content}>
+          {props.value[3]}
         </Typography>
       </Paper>
     </div>

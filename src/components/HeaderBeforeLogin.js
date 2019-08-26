@@ -10,6 +10,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom";
+import ReturnTiTleAndSearch from "./HeaderCommon";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,9 +55,9 @@ const useStyles = makeStyles(theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
-    width: "100%",
+    width: "0%",
     [theme.breakpoints.up("sm")]: {
-      width: 120,
+      width: 0,
       "&:focus": {
         width: 200
       }
@@ -63,15 +65,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header_beforeLogin = () => {
+const HeaderBeforeLogin = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" color="inherit" className={classes.title}>
-            Himattar
-          </Typography>
+          <ReturnTiTleAndSearch value={classes} />
           <Button color="inherit">ログイン</Button>
           <Button color="inherit">新規登録</Button>
         </Toolbar>
@@ -80,4 +80,4 @@ const Header_beforeLogin = () => {
   );
 };
 
-export default Header_beforeLogin;
+export default HeaderBeforeLogin;

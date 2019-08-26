@@ -10,6 +10,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { withRouter } from "react-router";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = () => {
+const HeaderBeforeLogin = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -72,24 +73,12 @@ const Header = () => {
           <Typography variant="h4" color="inherit" className={classes.title}>
             Himattar
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
-          <Button color="inherit">投稿</Button>
+          <Button color="inherit" onClick={() => {props.history.push("/login")}}>ログイン</Button>
+          <Button color="inherit" onClick={() => {props.history.push("/register")}}>新規登録</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+export default withRouter(HeaderBeforeLogin);

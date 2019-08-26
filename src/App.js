@@ -1,6 +1,7 @@
 import React from "react";
 
-import Header_beforeLogin from "./components/Header_beforeLogin";
+import HeaderBeforeLogin from "./components/HeaderBeforeLogin";
+import HeaderAfterLogin from "./components/HeaderAfterLogin"
 import PostList from "./components/PostList";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -13,7 +14,7 @@ import "./App.css";
 
 const App = () => (
   <React.Fragment>
-    <Header_beforeLogin />
+    <HeaderBeforeLogin />
     <Switch>
       <Route exact path="/" component={PostList} />
       <Route exact path="/login" component={Login} />

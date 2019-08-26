@@ -3,36 +3,29 @@ import * as actionType from "../utils/actionTypes"
 const initialState = {
     inputEmail: "",
     inputPassword: "",
-    inputUserName: "",
 }
 
-const RegisterReducer = (state = initialState, action) => {
+const LoginReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionType.INPUT_EMAIL_FOR_REGISTER:
+        case actionType.INPUT_EMAIL_FOR_LOGIN:
             return {
                 ...state,
                 inputEmail: action.payload.input,
             }
-        case actionType.INPUT_PASSWORD_FOR_REGISTER:
+        case actionType.INPUT_PASSWORD_FOR_LOGIN:
             return {
                 ...state,
                 inputPassword: action.payload.input,
             }
-        case actionType.INPUT_USERNAME_FOR_REGISTER:
-            return {
-                ...state,
-                inputUserName: action.payload.input,
-            }
-        case actionType.RESET_INPUT_FOR_REGISTER:
+        case actionType.RESET_INPUT_FOR_LOGIN:
             return {
                 ...state,
                 inputEmail: "",
                 inputPassword: "",
-                inputUserName: "",
             }
         default:
             return state;
     }
 }
 
-export default RegisterReducer;
+export default LoginReducer;

@@ -4,7 +4,7 @@ import HeaderBeforeLogin from "./components/HeaderBeforeLogin";
 import HeaderAfterLogin from "./components/HeaderAfterLogin"
 
 import PostList from "./components/PostList";
-import Login from "./components/Login";
+import Login from "./containers/Login";
 import Register from "./containers/Register";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
@@ -12,6 +12,8 @@ import Post from "./components/Post";
 
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
+
+
 
 const App = () => (
   <React.Fragment>

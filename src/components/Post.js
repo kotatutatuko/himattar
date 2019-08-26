@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { fontSize } from "@material-ui/system";
+import HeaderAfterLogin from "./HeaderAfterLogin";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -48,6 +49,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// ログイン状態を監視しログインしていなければログイン画面に飛ばす
+
 const Post = () => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
@@ -60,33 +63,36 @@ const Post = () => {
   };
 
   return (
-    <div className="postbox">
-      <p>Post</p>
-      <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          className={classes.title}
-          id="filled-full-width"
-          label="Title"
-          margin="normal"
-          variant="filled"
-        />
+    <React.Fragment>
+      <HeaderAfterLogin />
+      <div className="postbox">
+        <p>Post</p>
+        <form className={classes.container} noValidate autoComplete="off">
+          <TextField
+            className={classes.title}
+            id="filled-full-width"
+            label="Title"
+            margin="normal"
+            variant="filled"
+          />
+          <br />
+          <TextField
+            id="filled-content"
+            label="本文"
+            rows="12"
+            multiline
+            className={classes.content}
+            margin="normal"
+            variant="filled"
+          />
+        </form>
         <br />
-        <TextField
-          id="filled-content"
-          label="本文"
-          rows="12"
-          multiline
-          className={classes.content}
-          margin="normal"
-          variant="filled"
-        />
-      </form>
-      <br />
-      <Button variant="outlined" color="secondary" className={classes.button}>
-        投稿
-      </Button>
-      <br />
-    </div>
+        <Button variant="outlined" color="secondary" className={classes.button}>
+          投稿
+        </Button>
+        <br />
+      </div>
+    </React.Fragment >
   );
 };
 

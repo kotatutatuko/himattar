@@ -13,7 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
-import firebase from "firebase";
+import firebase from "../firebase";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -73,9 +73,6 @@ const Login = ({ state, history, inputEmail, inputPassword, resetInput }) => {
       console.log(error.message);
     })
   }
-
-  console.log(state)
-
 
   return (
     <div className="loginbox">

@@ -11,6 +11,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import { withRouter } from "react-router"
+import ReturnTiTleAndSearch from "./HeaderCommon";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,23 +72,8 @@ const HeaderAfterLogin = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" color="inherit" className={classes.title}>
-            Himattar
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
-          <Button color="inherit" onClick={() => {props.history.push("/post")}}>投稿</Button>
+          <ReturnTiTleAndSearch value={classes} />
+          <Button color="inherit" onClick={() => { props.history.push("/post") }}>投稿</Button>
         </Toolbar>
       </AppBar>
     </div>

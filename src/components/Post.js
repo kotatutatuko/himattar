@@ -1,11 +1,8 @@
 import React from "react";
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import { fontSize } from "@material-ui/system";
+
 import HeaderAfterLogin from "./HeaderAfterLogin";
 
 const useStyles = makeStyles(theme => ({
@@ -58,9 +55,7 @@ const Post = () => {
     password: "Password"
   });
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+ 
 
   return (
     <React.Fragment>
@@ -92,7 +87,7 @@ const Post = () => {
         </Button>
         <br />
       </div>
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 

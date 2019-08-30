@@ -1,19 +1,18 @@
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
 import firebase from "../firebase";
+var kindOfError = "";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -40,10 +39,22 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     display: "none"
+  },
+  error: {
+    color: "#f00",
+    fontSize: "1rem",
+    paddingBottom: "1.5rem"
   }
 }));
 
-const Register = ({state, history, inputEmail, inputPassword, inputUserName, resetInput}) => {
+const Register = ({
+  state,
+  history,
+  inputEmail,
+  inputPassword,
+  inputUserName,
+  resetInput
+}) => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     showPassword: false
@@ -58,25 +69,50 @@ const Register = ({state, history, inputEmail, inputPassword, inputUserName, res
 
   const handleChangePassword = event => {
     inputPassword(event.target.value);
-  }
+  };
 
   const handleChangeEmail = event => {
-    inputEmail(event.target.value)
-  }
+    inputEmail(event.target.value);
+  };
 
   const handleChangeUserName = event => {
-    inputUserName(event.target.value)
-  }
+    inputUserName(event.target.value);
+  };
 
   const handleClickRegister = () => {
-    firebase.auth().createUserWithEmailAndPassword(state.inputEmail, state.inputPassword).then(() => {
-      history.push("/");
-      resetInput();
-    }).catch(error => {
-      console.log(error.code);
-      console.log(error.message);
-    })
-  }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(state.inputEmail, state.inputPassword)
+      .then(() => {
+        history.push("/");
+        resetInput();
+      })
+      .catch(error => {
+        console.log(error.code);
+        console.log(error.message);
+        kindOfError = error.code;
+      });
+  };
+
+  const returnErrorMessage = kindOfError => {
+    if (kindOfError === "") {
+      return <div className={classes.error}>Error : テストメッセージです</div>;
+    } else if (kindOfError === "FIRAuthErrorCodeInvalidEmail") {
+      return (
+        <div className={classes.error}>
+          メールアドレスの形式が正しくないです
+        </div>
+      );
+    } else if (kindOfError === "FIRAuthErrorCodeEmailAlreadyInUse") {
+      return (
+        <div className={classes.error}>
+          このメールアドレスはすでに使用されています
+        </div>
+      );
+    } else if (kindOfError === "FIRAuthErrorCodeWeakPassword") {
+      return <div className={classes.error}>パスワードが弱すぎます</div>;
+    }
+  };
 
   return (
     <div className="registerbox">
@@ -124,7 +160,13 @@ const Register = ({state, history, inputEmail, inputPassword, inputUserName, res
           />
         </FormControl>
       </form>
-      <Button variant="outlined" color="secondary" className={classes.button} onClick={handleClickRegister}>
+      {returnErrorMessage(kindOfError)}
+      <Button
+        variant="outlined"
+        color="secondary"
+        className={classes.button}
+        onClick={handleClickRegister}
+      >
         登録
       </Button>
       <br />

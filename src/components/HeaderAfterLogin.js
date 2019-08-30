@@ -1,18 +1,8 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  InputBase
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import { withRouter } from "react-router"
+import { withRouter } from "react-router";
 import ReturnTiTleAndSearch from "./HeaderCommon";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     marginTop: "0",
-    fontSize: "3rem"
+    fontSize: "7vmin"
   },
   search: {
     position: "relative",
@@ -56,24 +46,40 @@ const useStyles = makeStyles(theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
-    width: "100%",
+    width: "7vmin",
     [theme.breakpoints.up("sm")]: {
       width: 120,
       "&:focus": {
         width: 200
       }
     }
+  },
+  inputbutton: {
+    width: "6vmin",
+    fontSize: "0.7rem",
+    [theme.breakpoints.up("sm")]: {
+      width: "12vmin",
+      fontSize: "1rem"
+    }
   }
 }));
 
-const HeaderAfterLogin = (props) => {
+const HeaderAfterLogin = props => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <ReturnTiTleAndSearch value={classes} />
-          <Button color="inherit" onClick={() => { props.history.push("/post") }}>投稿</Button>
+          <Button
+            className={classes.inputbutton}
+            color="inherit"
+            onClick={() => {
+              props.history.push("/post");
+            }}
+          >
+            投稿
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,19 +1,10 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  InputBase
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 import ReturnTiTleAndSearch from "./HeaderCommon";
 
+/* vmin--縦横画面幅のうちの最小をとった%*/
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     marginTop: "0",
-    fontSize: "3rem"
+    fontSize: "7vmin"
   },
   search: {
     position: "relative",
@@ -36,7 +27,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginLeft: 0,
-    width: "100%",
+    width: "auto",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
       width: "auto"
@@ -57,25 +48,50 @@ const useStyles = makeStyles(theme => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
-    width: "0%",
+    width: "7vmin",
     [theme.breakpoints.up("sm")]: {
-      width: 0,
+      width: 120,
       "&:focus": {
         width: 200
       }
     }
+  },
+  inputbutton: {
+    width: "6vmin",
+    fontSize: "0.7rem",
+    [theme.breakpoints.up("sm")]: {
+      width: "12vmin",
+      fontSize: "1rem"
+    }
   }
 }));
 
-const HeaderBeforeLogin = (props) => {
+const HeaderBeforeLogin = props => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <ReturnTiTleAndSearch value={classes} />
-          <Button color="inherit" onClick={() => {props.history.push("/login")}}>ログイン</Button>
-          <Button color="inherit" onClick={() => {props.history.push("/register")}}>新規登録</Button>
+
+          <Button
+            className={classes.inputbutton}
+            color="inherit"
+            onClick={() => {
+              props.history.push("/login");
+            }}
+          >
+            ログイン
+          </Button>
+          <Button
+            className={classes.inputbutton}
+            color="inherit"
+            onClick={() => {
+              props.history.push("/register");
+            }}
+          >
+            新規登録
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
